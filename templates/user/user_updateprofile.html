@@ -1,0 +1,51 @@
+{% extends "user/index.html" %}
+{% block body %}
+
+<div class="container" style="margin-Top: 40px;">
+
+<form action="/myapp/profile_update_post/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<table  class="table table-bordered">
+      <tr>
+
+        <td colspan="2" align="center">
+          <div style="width: 160px; height: 160px; border-radius: 80px; overflow: hidden;">
+              <img style="object-fit: cover; width: 100%; height: 100%;" src="{{ data.photo }}" alt="User Photo">
+          </div>
+      </td>
+      
+  </tr>
+  <tr>
+    <td width="180px">Name</td>
+    <td>  <input type="text" name="fullname" placeholder="Full Name"  class="form-control" required value="{{ data.name }}"/></td>
+  </tr>
+         <tr>
+    <td width="180px">Gender</td>
+    <td><select name="gender" required class="form-control" style="width: 100%">
+
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select></td>
+  </tr>
+     <tr>
+    <td width="180px">Phone</td>
+    <td> <input type="tel" name="phone" placeholder="Phone" class="form-control" required value="{{ data.phone }}"/></td>
+  </tr>
+         <tr>
+    <td width="180px">Email</td>
+    <td><input type="email" name="email" placeholder="Email" class="form-control" required value="{{ data.email }}"/></td>
+  </tr>
+         <tr>
+    <td width="180px">Photo</td>
+    <td><input type="file" name="photo" accept="image/*"  class="form-control"  /></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn btn-success" name="button" id="button" value="Submit" style="background-color: rgb(17, 17, 17); color:white; border: none; padding:10px;border-radius: 0px;" /></td>
+  </tr>
+</table>
+</form>
+</div>
+
+{% endblock %}

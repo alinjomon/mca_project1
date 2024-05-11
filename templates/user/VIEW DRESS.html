@@ -1,0 +1,106 @@
+{% extends "user/index.html" %}
+{% block body %}
+
+    <style>
+    .card-product .img-wrap {
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+    position: relative;
+    height: 220px;
+    text-align: center;
+}
+.card-product .img-wrap img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+.card-product .info-wrap {
+    overflow: hidden;
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+.card-product .bottom-wrap {
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+.label-rating { margin-right:10px;
+    color: #333;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.card-product .price-old {
+    color: #999;
+}
+
+    </style>
+
+
+
+
+<div class="container" style="display: flex;  flex-direction: column;margin-top: 70px;" class="container"> 
+    
+    <form id="form1" name="form1" method="post" action="/myapp/viewdress_POST_u/" enctype="multipart/form-data">
+        {% csrf_token %}
+    <table  class="table pull-left" style="width: 300px">
+      <tr>
+        <th >CATEGORY</th>
+        <th><select name="select" id="select" >
+            {% for i in cat %}
+    
+            <option value="{{ i.id }}">{{ i.catname }}</option>
+            {% endfor %}
+        </select></th>
+        <th><input type="submit" name="button" id="button" value="Search" style="background-color: black; color:white; border: none; padding:10px;border-radius: 0px;" /></th>
+      </tr>
+    </table>
+    <Br>
+    <Br>
+    </form>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="row">
+    
+          {% for i in dt %}
+    <div class="col-md-4">
+        <figure class="card card-product" style="padding: 10px;">
+            <div class="img-wrap"><img src="{{ i.photo }}"></div>
+            <figcaption class="info-wrap">
+                    <h4 class="title">{{ i.pname }}</h4>
+                    <p class="desc"><a href={{i.description}}>{{ i.description }}</a></p>
+                    
+                    <div class="rating-wrap">
+                        <div class="label-rating">Applicable on {{ i.CATEGORY.catname }}s</div>
+                        <!-- <div class="label-rating">Suitable for : {{ i.skintone }} </div> -->
+                                            <div class="label-rating">For {{ i.skinType }} skins</div>
+                        <div class="label-rating">Suitable for {{ i.gender }}</div>
+    {#                    <div class="label-rating">Wearable as {{ i.occasions }}</div>#}
+    
+                    </div> <!-- rating-wrap.// -->
+            </figcaption>
+    
+        </figure>
+    </div>
+    
+        {% endfor %}<!-- col // -->
+    </div> <!-- row.// -->
+    
+    
+    
+    </div>
+    
+    
+    
+    
+{% endblock %}

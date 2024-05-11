@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Signup Form Page Responsive Widget Template :: W3layouts</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords"
+        content="Signup Form Page Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- //Meta tag Keywords -->
+    <link rel="stylesheet" href="" type="text/css" media="all" /><!-- Style-CSS -->
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+    .logo-name{
+      font-family: "Dancing Script", cursive !important;
+      font-size: 38px;
+      position: relative;
+      top:-5px;
+      margin: 0px 0 0;
+      padding-top: 5px;
+      
+      text-align: center;
+      padding-bottom: 20px;
+      
+      box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    }
+    body{
+        
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+        .card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            
+            margin: 0 100px 0;
+        }
+
+        .form-26 {
+            margin-top: 50px;
+        }
+
+        .form-26 h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-26 p {
+            text-align: center;
+            color: #777;
+        }
+
+        .form-input {
+            margin-bottom: 15px;
+        }
+
+        .form-input input,
+        .form-input select,
+        .form-input button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .form-input input[type="file"] {
+            padding: 0;
+        }
+
+        .form-input select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>');
+            background-repeat: no-repeat;
+            background-position-x: calc(100% - 10px);
+            background-position-y: center;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            text-align: center;
+            color: #777;
+        }
+
+        /* Hide the default file input */
+input[type="file"] {
+    display: none;
+}
+
+
+
+/* Style the label to look like a button */
+.file-label {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: rgb(89, 89, 89);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+/* Change label style when hovering */
+.file-label:hover {
+    background-color: #0056b3;
+}
+
+input, select{
+    border-radius: 20px !important;
+    background-color: #dfdfdf;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <Nav>
+        <div class="logo">
+            <h3 class="logo-name">GlowStyle</h3>
+            
+          </div>
+    </Nav>
+    <!-- /form-26-section -->
+    <section class="form-26" >
+        <div class="card" style="display: flex;" >
+            <img style="width: auto; height: 500px; margin-right: 30px;" src="https://images.everydayhealth.com/images/skin-beauty/what-are-natural-skin-care-products-alt-1440x810.jpg"/>
+            <div  class="form-26-main">
+                <div class="layer">
+                    <div class="wrapper">
+                        <div class="form-inner-cont">
+                            <h2>Signup</h2>
+                            <p style="font-size: 12px;">GlowStyle utilizes machine learning to deliver personalized makeup recommendations, enhancing beauty routines with tailored product suggestions and expertise</p>
+                            <form method="post" action="/myapp/user_signup/" enctype="multipart/form-data"
+                                class="signup-form">
+                                {% csrf_token %}
+                                <div class="form-input">
+                                    <input type="text" name="fullname" placeholder="Full Name" required>
+                                </div>
+                                <div class="form-input">
+                                    <input type="email" name="email" placeholder="Email" required>
+                                </div>
+                                <div class="form-input">
+                                    <input type="number" name="phone" placeholder="Phone" required pattern="[0-9]{10}">
+                                </div>
+                                <div class="form-input">
+                                    <select name="gender" required>
+                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-input">
+                                    <label for="photo" class="file-label">Choose Photo</label>
+                                    <input type="file" id="photo" name="photo" accept="image/*" required>
+                                </div>
+                                
+                                <div class="form-input">
+                                    <input type="password" name="password" placeholder="Password" required minlength="8">
+                                </div>
+                                <div class="form-input">
+                                    <button class="btn" style="background-color: rgb(47, 47, 47); color:white; border: none; padding:10px;border-radius: 0px;">Signup</button>
+                                    <p>Already registered? <a href="/myapp/login" style="text-decoration: none;">Signin</a></p>
+                                </div>
+                            </form>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //form-26-section -->
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+{% extends "user/index.html" %}
+{% block body %}
+<div class="container" style="margin-Top: 40px;">
+<form action="/myapp/user_add_dress/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+  <table  class="table table-bordered">
+
+    <tr>
+      <td>Product image</td>
+      <td>
+      <input type="file" name="fileField" id="fileField" class="form-control" required /></td>
+    </tr>
+
+    <tr>
+      <td>Type</td>
+      <td>
+        <select name="select" id="select" required class="form-control">
+           <option>Concealer</option>
+            <option>Primer</option>
+            <option>Foundation</option>
+            <option>Mascara</option>
+            <option>Eyeliner</option>
+            <option>Eye Shadow</option>
+            <option>Blush</option>
+            <option>LipStick</option>
+
+      </select></td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit" class="btn btn-success" style="background-color: black; color:white; border: none; padding:10px;border-radius: 0px;"/></td>
+    </tr>
+  </table>
+</form>
+</div>
+{% endblock %}

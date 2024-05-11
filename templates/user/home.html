@@ -1,0 +1,250 @@
+{% extends "user/index.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+* {box-sizing: border-box}
+
+body 
+{font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none; max-width: 100%;}
+
+img {max-width: 100%; height: auto;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 100%; 
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+/* .fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+} */
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+</style>
+</head>
+<body>
+
+<div class="slideshow-container">
+
+<div class="mySlides ">
+  <div class="numbertext">1 / 4</div>
+  <img src="https://www.hokmakeup.com/cdn/shop/files/MUR-hok.jpg?v=1712297898">
+  <div class="text">Satin</div>
+</div>
+
+<div class="mySlides ">
+  <div class="numbertext">2 / 4</div>
+  <img src="https://www.hokmakeup.com/cdn/shop/files/Banner_2_-_Serum_Desktop.jpg?v=1710495535">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides ">
+  <div class="numbertext">3 / 4</div>
+  <img src="https://www.hokmakeup.com/cdn/shop/files/Banner_2_-_Argan_Keratin_Desktop.jpg?v=1710495522">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides ">
+    <div class="numbertext">4 / 4</div>
+    <img src="https://www.hokmakeup.com/cdn/shop/files/Milani_Banner_HOK.jpg?v=1710576419">
+    <div class="text">Milani</div>
+  </div>
+  
+
+<a class="prev" onclick="plusSlides(-1)">❮</a>
+<a class="next" onclick="plusSlides(1)">❯</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+  <span class="dot" onclick="currentSlide(4)"></span> 
+
+</div>
+
+
+
+<div class="container" style="display: flex;  flex-direction: column;margin-top: 70px;" class="container"> 
+    
+<form id="form1" name="form1" method="post" action="/myapp/viewdress_POST_u/" enctype="multipart/form-data">
+    {% csrf_token %}
+<table  class="table pull-left" style="width: 300px">
+  <tr>
+    <th >CATEGORY</th>
+    <th><select name="select" id="select" >
+        {% for i in cat %}
+
+        <option value="{{ i.id }}">{{ i.catname }}</option>
+        {% endfor %}
+    </select></th>
+    <th><input type="submit" name="button" id="button" value="Search" style="background-color: black; color:white; border: none; padding:10px;border-radius: 0px;" /></th>
+  </tr>
+</table>
+<Br>
+<Br>
+</form>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+
+
+
+
+
+
+<div class="row">
+
+      {% for i in dt %}
+<div class="col-md-4">
+	<figure class="card card-product" style="padding: 10px;">
+		<div class="img-wrap"><img src="{{ i.photo }}"></div>
+		<figcaption class="info-wrap">
+				<h4 class="title">{{ i.pname }}</h4>
+				<p class="desc">{{ i.description }}</p>
+				<div class="rating-wrap">
+					<div class="label-rating">Applicable on {{ i.CATEGORY.catname }}s</div>
+					<!-- <div class="label-rating">Suitable for : {{ i.skintone }} </div> -->
+                    					<div class="label-rating">For {{ i.skinType }} skins</div>
+                    <div class="label-rating">Suitable for {{ i.gender }}</div>
+{#                    <div class="label-rating">Wearable as {{ i.occasions }}</div>#}
+
+				</div> <!-- rating-wrap.// -->
+		</figcaption>
+
+	</figure>
+</div>
+
+    {% endfor %}<!-- col // -->
+</div> <!-- row.// -->
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+</body>
+</html> 
+
+{% endblock %}

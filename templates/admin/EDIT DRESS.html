@@ -1,0 +1,196 @@
+{% extends "admin/index.html" %}
+{% block body %}
+<div class="container" style="margin-Top: 40px;" >
+<form action="/myapp/editdress_POST/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+  <table  class="table table-bordered">
+    <tr>
+
+    <td colspan="2" align="center"><img src="{{ data.photo }}" width="150px" height="150px"/></td>
+  </tr>
+    <tr>
+      <td width="180px">Name</td>
+      <td><input type="text" name="textfield4" id="textfield4" required class="form-control" value="{{ data.pname }}"/>
+      <td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td>
+      <input type="file" name="fileField" id="fileField" class="form-control"  /></td>
+    </tr>
+    <tr>
+      <td>Link</td>
+      <td><textarea name="textarea" id="textarea" cols="45" rows="5" required class="form-control">{{ data.description }}</textarea></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td>
+        <select name="select" id="select" required class="form-control">
+            {% for i in dd %}
+            <option value="{{ i.id }}">{{ i.catname }}</option>
+            {% endfor %}
+      </select></td>
+    </tr>
+  <tr>
+      <td>Skintone</td>
+<td class="checkbox-container">
+    {% if data.skintone == "tone1" %}
+    <input type="radio" name="checkbox"  value="tone1" checked/>
+    <label for="radio"><span style="color: #3b2219"><b>Tone 1</b></span></label><br>
+    {% else  %}
+        <input type="radio" name="checkbox"  value="tone1" />
+    <label for="radio"><span style="color: #3b2219"><b>Tone 1</b></span></label><br>
+    {% endif %}
+{% if data.skintone == "tone2" %}
+    <input type="radio" name="checkbox"  value="tone2" checked/>
+    <label for="radio"><span style="color: #a16e4b"><b>Tone 2</b></span></label><br>
+{% else %}
+ <input type="radio" name="checkbox"  value="tone2" />
+    <label for="radio"><span style="color: #a16e4b"><b>Tone 2</b></span></label><br>
+{% endif %}
+{% if data.skintone == "tone3" %}
+    <input type="radio" name="checkbox"  value="tone3" checked/>
+    <label for="radio"><span style="color: #d4aa78"><b>Tone 3</b></span></label><br>
+{% else %}
+  <input type="radio" name="checkbox"  value="tone3" />
+    <label for="radio"><span style="color: #d4aa78"><b>Tone 3</b></span></label><br>
+
+{% endif %}
+
+{% if data.skintone == "tone4" %}
+        <input type="radio" name="checkbox"  value="tone4" checked/>
+    <label for="radio"><span style="color: #e6bc98"><b>Tone 4</b></span></label><br>
+
+{% else %}
+      <input type="radio" name="checkbox"  value="tone4" />
+    <label for="radio"><span style="color: #e6bc98"><b>Tone 4</b></span></label><br>
+
+{% endif %}
+{% if data.skintone == "tone5" %}
+        <input type="radio" name="checkbox"  value="tone5" checked/>
+    <label for="radio"><span style="color: 	#ffe7d1"><b>Tone 5</b></span></label><br>
+{% else %}
+<input type="radio" name="checkbox"  value="tone5" />
+    <label for="radio"><span style="color: 	#ffe7d1"><b>Tone 5</b></span></label><br>
+{% endif %}
+</td>
+  </tr>
+    <tr>
+      <td>GENDER</td>
+      <td><select name="select2" id="select2" required class="form-control">
+          <option>UNISEX</option>
+      <option>MALE</option>
+      <option>FEMALE</option>
+      </select></td>
+    </tr>
+    <tr>
+      <td>Skin Type</td>
+      <td><select name="select3" id="select3" required class="form-control">
+          <option>ALL</option>
+          <option>Oily</option>
+      <option>Dry</option>
+      <option>Normal</option>
+      <option>Sensitive</option>
+      </select></td>
+    </tr>
+      <tr>
+        
+      <td>Occassions</td>
+          {% if data.occasions == "everyday" %}
+<td class="checkbox-container">
+
+    <input type="checkbox" name="occassions" checked id="occassions" class="form-control" value="everday" />
+    <label for="checkbox">Everyday</label><br>
+   <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="wedding"/>
+    <label for="checkbox">Wedding</label><br>
+     <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="party"/>
+    <label for="checkbox">Party</label><br>
+    <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="office"/>
+    <label for="checkbox">Office</label><br>
+</td>
+            {% elif data.occasions == "everyday,wedding" %}
+<td class="checkbox-container">
+
+  <input type="checkbox" name="occassions" checked id="occassions" class="form-control" value="everday" />
+  <label for="checkbox">Everyday</label><br>
+ <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="wedding"/>
+  <label for="checkbox">Wedding</label><br>
+   <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="party"/>
+  <label for="checkbox">Party</label><br>
+  <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="office"/>
+  <label for="checkbox">Office</label><br>
+</td>
+          {% elif data.occasions == "everyday,wedding,party" %}
+<td class="checkbox-container">
+
+  <input type="checkbox" name="occassions" checked id="occassions" class="form-control" value="everday" />
+  <label for="checkbox">Everyday</label><br>
+ <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="wedding"/>
+  <label for="checkbox">Wedding</label><br>
+   <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="party"/>
+  <label for="checkbox">Party</label><br>
+  <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="office"/>
+  <label for="checkbox">Office</label><br>
+</td>
+        {% elif data.occasions == "everyday,party" %}
+<td class="checkbox-container">
+
+  <input type="checkbox" name="occassions" checked id="occassions" class="form-control" value="everday" />
+  <label for="checkbox">Everyday</label><br>
+ <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="wedding"/>
+  <label for="checkbox">Wedding</label><br>
+   <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="party"/>
+  <label for="checkbox">Party</label><br>
+  <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="office"/>
+  <label for="checkbox">Office</label><br>
+</td>
+            {% elif data.occasions == "wedding,party" %}
+<td class="checkbox-container">
+
+  <input type="checkbox" name="occassions" checked id="occassions" class="form-control" value="everday" />
+  <label for="checkbox">Everyday</label><br>
+ <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="wedding"/>
+  <label for="checkbox">Wedding</label><br>
+   <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="party"/>
+  <label for="checkbox">Party</label><br>
+  <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="office"/>
+  <label for="checkbox">Office</label><br>
+</td>
+          {% elif data.occasions == "wedding" %}
+<td class="checkbox-container">
+
+  <input type="checkbox" name="occassions" checked id="occassions" class="form-control" value="everday" />
+  <label for="checkbox">Everyday</label><br>
+ <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="wedding"/>
+  <label for="checkbox">Wedding</label><br>
+   <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="party"/>
+  <label for="checkbox">Party</label><br>
+  <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="office"/>
+  <label for="checkbox">Office</label><br>
+</td>
+
+          {% else %}
+<td class="checkbox-container">
+
+  <input type="checkbox" name="occassions" checked id="occassions" class="form-control" value="everday" />
+  <label for="checkbox">Everyday</label><br>
+ <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="wedding"/>
+  <label for="checkbox">Wedding</label><br>
+   <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="party"/>
+  <label for="checkbox">Party</label><br>
+  <input type="checkbox" name="occassions"  id="occassions" class="form-control" value="office"/>
+  <label for="checkbox">Office</label><br>
+</td>
+          {% endif %}
+  </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit" style="background-color: black; color:white; border: none; padding:10px;border-radius: 0px;" /></td>
+    </tr>
+  </table>
+</form>
+</div>
+{% endblock %}
+{#Cool: If ‘cool’ colors like blue, black, white, purple, etc. compliment you then you have cool undertones.#}
+{#Warm: If peach, yellow, brown, olive and other ‘warm’ colors suit you then you have warm undertones.#}
+{#Neutral: If you think you look good in every and any shade you wear, well then, lucky you! You have a neutral undertone.#}

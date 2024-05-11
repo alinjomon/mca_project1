@@ -1,0 +1,158 @@
+
+
+
+
+    {% extends "user/index.html" %}
+{% block body %}
+<div class="container" style="margin-Top: 40px;">
+<form action="/myapp/skintone_posts/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+  <table  class="table table-bordered">
+
+    <tr>
+      <td>Pic</td>
+      <td>
+      <input type="submit" id="capture-btn" name="b" value="Capture Photo" style="background-color: black; color:white; border: none; padding:10px;border-radius: 0px;"/>
+      <br>
+      <br>
+
+      <!-- <img src="{{ img }}" width="100px" height="100px"/></td> -->
+
+    </tr>
+
+ <tr>
+      <td>GENDER</td>
+      <td><select name="select2" id="select2" required class="form-control">
+          <option>UNISEX</option>
+      <option>MALE</option>
+      <option>FEMALE</option>
+      </select></td>
+    </tr>
+    <tr>
+      <td>How is your skin looking today</td>
+      <td><select name="select3" id="select3" required class="form-control">
+        <option>ALL</option>
+        <option>Oily</option>
+    <option>Dry</option>
+    <option>Normal</option>
+    <option>Sensitive</option>
+    </select></td>
+    </tr>
+      <tr>
+        <td>Occassions</td>
+        <td class="checkbox-container">
+          <div style="display: flex; margin-bottom: 20px; ">
+            <label for="checkbox" style="width:200px">Everyday</label><br>
+            <input type="checkbox" name="occassions" style="width: 20px;height: 20px;"  id="occassions" class="form-control" value="everyday"/>
+        
+          </div>
+          <div style="display: flex; margin-bottom: 20px; ">
+            <label for="checkbox" style="width:200px">Wedding</label><br>
+           <input type="checkbox" name="occassions" style="width: 20px;height: 20px;" id="occassions" class="form-control" value="wedding"/>
+            </div>
+        
+            <div style="display: flex;margin-bottom: 20px;">
+              <label for="checkbox" style="width:200px">Party</label><br>
+             <input type="checkbox" name="occassions" style="width: 20px;height: 20px;"  id="occassions" class="form-control" value="party"/>
+            </div>
+        
+            <div style="display: flex; margin-bottom: 20px; ">
+              <label for="checkbox" style="width:200px">Office</label><br>
+            <input type="checkbox" name="occassions" style="width: 20px;height: 20px;" id="occassions" class="form-control" value="office"/>
+            </div>
+        
+        </td>
+  </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit" style="background-color: black; color:white; border: none; padding:10px;border-radius: 0px;" /></td>
+    </tr>
+  </table>
+ <style>
+    .card-product .img-wrap {
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+    position: relative;
+    height: 220px;
+    text-align: center;
+}
+.card-product .img-wrap img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+.card-product .info-wrap {
+    overflow: hidden;
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+.card-product .bottom-wrap {
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+.label-rating { margin-right:10px;
+    color: #333;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.card-product .price-old {
+    color: #999;
+}
+.desc{
+        background-color: #f1c5a2;
+        padding: 5px 15px;
+        border-radius: 5px;
+        margin: 0 auto;
+        margin-bottom: 15px
+      }
+      .card{
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+    </style>
+
+
+{% if dresses %}
+
+<div class="row">
+
+      {% for i in dresses %}
+<div class="col-md-4">
+	<figure class="card card-product">
+		<div class="img-wrap"><img src="{{ i.photo }}"></div>
+		<figcaption class="info-wrap">
+				<h4 class="title">{{ i.pname }}</h4>
+				
+				<div class="rating-wrap">
+					<div class="label-rating">{{ i.CATEGORY.catname }}</div>
+					<div class="label-rating">{{ i.skintone }} </div>
+                    					<div class="label-rating">{{ i.bodytype }}</div>
+                    <div class="label-rating">Suitable for {{ i.gender }}</div>
+{#                    <div class="label-rating">Wearable as {{ i.occasions }}</div>#}
+
+				</div> <!-- rating-wrap.// -->
+		</figcaption>
+    <p class="desc"><a target="_blank" href={{i.description}} >Buy Now</a></p>
+{#		<div class="bottom-wrap">#}
+{#				<a href="/myapp/editdress/{{ i.id }}" class="btn btn-sm btn-primary float-left">Update</a> &nbsp;&nbsp;#}
+{#				<a href="/myapp/deletedress/{{ i.id }}" class="btn btn-sm btn-primary float-right">Delete</a>#}
+{##}
+{#		</div> <!-- bottom-wrap.// -->#}
+	</figure>
+</div>
+
+    {% endfor %}<!-- col // -->
+</div> <!-- row.// -->
+
+{% endif %}
+</form>
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,34 @@
+{% extends "user/index.html" %}
+{% block body %}
+<div class="container" style="margin-Top: 40px;">
+<form id="form1" name="form1" method="post" action="/myapp/VIEW_SUGGESTION_post_u/">
+
+<br>
+<br>
+
+  <table class="table table-bordered">
+    <tr>
+      <th >SL.NO</th>
+      <th >DRESS</th>
+
+      <th >TYPE</th>
+{#        <th >REPLY</th>#}
+{#      <th >STATUS</th>#}
+     
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td width="50px">{{ forloop.counter }}</td>
+      <td width="13%"><img src="{{ i.dressphoto }}" width="140px" height="140px"/></td>
+      <td>{{ i.dresstype }}</td>
+{#      <td>{{ i.compaint }}</td>#}
+{#      <td>&nbsp;{{ i.response }}</td>#}
+<td><a href="/myapp/delete_drs/{{i.id}}" style="background-color: rgb(136, 0, 0); color:white; border: none; padding:10px;border-radius: 0px;">delete</a></td>
+     
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+</div>
+{% endblock %}

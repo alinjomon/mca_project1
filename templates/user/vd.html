@@ -1,0 +1,31 @@
+{% extends "user/index.html" %}
+{% block body %}
+
+<form id="form1" name="form1" method="post" action="/myapp/VIEW_SUGGESTION_post/">
+    {% csrf_token %}
+
+<br>
+<br>
+<div class="grid-container" align="center">
+    {% for i in data %}
+        <div class="grid-item">
+            <img src="{{ i.top }}" width="70dp" height="70dp"/><br>
+            <img src="{{ i.bottom }}" width="70dp" height="70dp"/>
+        </div>
+    {% endfor %}
+</div>
+<style>
+    .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust column width as needed */
+    grid-gap: 10px; /* Adjust gap between grid items as needed */
+}
+
+.grid-item {
+    border: 1px solid #ddd; /* Border style */
+    padding: 10px; /* Padding around grid items */
+}
+</style>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}
